@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Abaixo estão listados uma série de livros que eu utilizo como referências. Química Geral CHANG, Raymond. Química ATKINS, Peter. Princípios de Química, Questionando a Vida Moderna e o Meio Ambiente BRO">
+    <meta name="description" content="Oi, meu nome é Marlon e esse é o meu caderno virtual.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="livros">
-<meta property="og:url" content="https:&#x2F;&#x2F;cadernodequimico.com&#x2F;livros&#x2F;index.html">
+<meta property="og:title" content="search">
+<meta property="og:url" content="https:&#x2F;&#x2F;cadernodequimico.com&#x2F;search&#x2F;index.html">
 <meta property="og:site_name" content="CDQ_ caderno de químico">
-<meta property="og:description" content="Abaixo estão listados uma série de livros que eu utilizo como referências. Química Geral CHANG, Raymond. Química ATKINS, Peter. Princípios de Química, Questionando a Vida Moderna e o Meio Ambiente BRO">
+<meta property="og:description" content="Oi, meu nome é Marlon e esse é o meu caderno virtual.">
 <meta property="og:locale" content="pt-br">
-<meta property="og:updated_time" content="2019-11-21T18:17:04.033Z">
+<meta property="og:updated_time" content="2019-11-22T14:29:48.742Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -34,7 +34,7 @@
         
     
     <!-- title -->
-    <title>livros</title>
+    <title>search</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -81,30 +81,15 @@
 
   <div class="content" itemprop="articleBody">
       
-          <p>Abaixo estão listados uma série de livros que eu utilizo como referências.</p>
-<h2 id="Quimica-Geral"><a href="#Quimica-Geral" class="headerlink" title="Química Geral"></a>Química Geral</h2><ol>
-<li><a href="https://amzn.to/2QyQ4iX" target="_blank" rel="noopener">CHANG, Raymond. <strong>Química</strong></a></li>
-<li><a href="https://amzn.to/2OtrP36" target="_blank" rel="noopener">ATKINS, Peter. <strong>Princípios de Química, Questionando a Vida Moderna e o Meio Ambiente</strong></a></li>
-<li><a href="https://amzn.to/2O2mpNv" target="_blank" rel="noopener">BROWN, Theodore L. <strong>Chemistry, The Central Science</strong></a></li>
-<li><a href="https://amzn.to/2D57SKp" target="_blank" rel="noopener">SILBERBERG, Martin S. <strong>Chemistry, The Molecular Nature of Matter and Chang</strong></a></li>
-<li><a href="https://amzn.to/2KDiwwc" target="_blank" rel="noopener">BURDGE, Julia. <strong>Chemistry, Atoms First</strong></a></li>
-<li><a href="https://amzn.to/2O3Z26f" target="_blank" rel="noopener">OXTOBY, David W. <strong>Principles of Modern Chemistry</strong></a></li>
-</ol>
-<h2 id="Quimica-Organica"><a href="#Quimica-Organica" class="headerlink" title="Química Orgânica"></a>Química Orgânica</h2><ol>
-<li>VOLHARDT, Peter. <strong>Organic Chemistry</strong></li>
-<li>SOLOMONS. T. W. Graham. <strong>Organic Chemistry</strong></li>
-<li>CLAYDEN, Jonathan. <strong>Organic Chemistry</strong></li>
-<li>MCMURRY, John E. <strong>Organic Chemistry</strong></li>
-<li>BRUICE, Paula Y. <strong>Organic Chemistry</strong></li>
-</ol>
-<h2 id="Quimica-Analitica"><a href="#Quimica-Analitica" class="headerlink" title="Química Analítica"></a>Química Analítica</h2><ol>
-<li>SKOOG, Douglas A. <strong>Fundamentos de Química Analítica</strong></li>
-<li>HARRIS, Daniel C. <strong>Quantitative Chemical Analysis</strong></li>
-<li>CHRISTIAN, Gary D. <strong>Analytical Chemistry</strong></li>
-<li>SHRINER, Ralph l. <strong>The systematic identification of organic compounds</strong></li>
-</ol>
+        <section id="search">
+  <form>
+    <input type="text" class="search-input" id="search-input" placeholder="Buscar...">
+  </form>
+  <div id="search-result"></div>
+  <p class="search-no-result">Nenhum resultado encontrado.</p>
+</section>
 
-        
+      
   </div>
 </article>
 
@@ -142,6 +127,41 @@
 
 <script src="/js/main.js"></script>
 <!-- search -->
+
+  <script src="/js/search.js"></script>
+  <script type="text/javascript">
+  $(function() {
+
+    var $inputArea = $("input#search-input");
+    var $resultArea = document.querySelector("div#search-result");
+
+    $inputArea.focus(function() {
+      var search_path = "search.xml";
+      if (search_path.length == 0) {
+        search_path = "search.xml";
+      }
+      var path = "/" + search_path;
+      searchFunc(path, 'search-input', 'search-result');
+    });
+
+    $inputArea.keydown(function(e) {
+      if (e.which == 13) {
+        e.preventDefault();
+      }
+    });
+
+    var observer = new MutationObserver(function(mutationsList, observer) {
+      if (mutationsList[0].addedNodes) {
+        $(".search-no-result").show(200);
+      } else {
+        $(".search-no-result").hide();
+      }
+    });
+
+    observer.observe($resultArea, { childList: true });
+
+  });
+  </script>
 
 <!-- Google Analytics -->
 
